@@ -43,7 +43,7 @@ export default function App () {
                 <Navigation />
             ): null}
             <div className={`min-h-screen flex flex-col items-center justify-center ${isLoggedIn? "cursor-pointer":null}`}>
-                <Header title={"ASSISTBOT"} />
+                <Header title={"ASSISTBOT"} subtitle={"By ShopSmart"} />
                 {isLoggedIn ? (
                     <div className="text-center">
                         <p className="text-gray-700 mt-4">Click anywhere to navigate to the chat</p>

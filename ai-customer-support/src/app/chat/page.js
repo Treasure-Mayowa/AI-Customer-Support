@@ -88,7 +88,7 @@ export default function Chat () {
 
     return (
         <main className="h-screen flex flex-col items-center justify-center">
-            <Header title={"AssistBot"}/>
+            <Header title={"AssistBot"} subtitle={"By ShopSmart"}/>
             <div className="w-full max-w-md p-4 bg-white shadow-md rounded-lg">
                 <div className="flex flex-col space-y-4 mb-4 overflow-y-auto max-h-96">
                     {messageJSX}
