@@ -1,12 +1,12 @@
 'use client'
-
-import { useState, useEffect, useRef } from "react"
+import { useState, useEffect } from "react"
 import SendIcon from '@mui/icons-material/Send'
 import { onAuthStateChanged } from "firebase/auth"
 import { auth } from "../firebase/firebase"
 import { useRouter } from "next/navigation"
 import Header from "../component/Header"
 import { context } from "./data"
+
 
 export default function Chat () {
     const [message, setMessage] = useState('')
@@ -17,7 +17,6 @@ export default function Chat () {
     )
     const [loading, setLoading ] = useState(false)
     const router = useRouter()
-    const messagesEndRef = useRef(null)
 
     const suggestions = [
         "What are your business hours?",
@@ -85,24 +84,14 @@ export default function Chat () {
             </>
         )
         setMessage('')
-        scrollToBottom()
     }
-
-    const scrollToBottom = () => {
-        messagesEndRef.current?.scrollIntoView({ behavior: "smooth" })
-    }
-
-    useEffect(() => {
-        scrollToBottom()
-    }, [messageJSX])
 
     return (
         <main className="h-screen flex flex-col items-center justify-center">
             <Header title={"AssistBot"}/>
-            <div className="w-full max-w-lg p-4 bg-white shadow-md rounded-lg">
+            <div className="w-full max-w-md p-4 bg-white shadow-md rounded-lg">
                 <div className="flex flex-col space-y-4 mb-4 overflow-y-auto max-h-96">
                     {messageJSX}
-                    <div ref={messagesEndRef} />
                 </div>
                 <form onSubmit={sendMessage} className="flex">
                     <div className="flex-grow">
