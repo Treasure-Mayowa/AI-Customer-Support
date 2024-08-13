@@ -65,7 +65,7 @@ export default function LogIn () {
                 {errorMessage && <p className="text-red-500 font-medium mt-4">{errorMessage}</p>}
                 <div className="mt-4 text-center">
                     <Link href="/register" className="text-blue-500 hover:underline">
-                        Don't have an account? Sign up.
+                        Don&apos;t have an account? Sign up.
                     </Link>
                 </div>
             </div>

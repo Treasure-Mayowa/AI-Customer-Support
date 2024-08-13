@@ -17,7 +17,7 @@ export default function App () {
             user? setIsLoggedIn(true) : setIsLoggedIn(false)
           })
           return () => unsubscribe()
-    }, [auth])
+    }, [])
 
     useEffect(() => {
         const handleLoggedInClick = () => {
