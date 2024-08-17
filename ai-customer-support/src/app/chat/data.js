@@ -49,18 +49,10 @@ const context = {
         {
           "question": "How do I return an item?",
           "answer": "To return an item, visit our Returns Center, enter your order number and email address, and follow the instructions to print a return label."
-        },
-        {
-          "question": "I forgot my password, how do I reset it?",
-          "answer": "Click on 'Forgot Password' on the login page, enter your email address, and follow the instructions to reset your password."
         }
       ]
     },
     "commonUserQueries": [
-      {
-        "question": "Is the iPhone 13 available in black?",
-        "answer": "Yes, the iPhone 13 is available in black."
-      },
       {
         "question": "Where is my order?",
         "answer": "You can track your order using the tracking number provided in your shipment confirmation email."
@@ -70,8 +62,8 @@ const context = {
         "answer": "Log in to your account, go to your order history, and select the order you wish to update."
       },
       {
-        "question": "Are there any current discounts on laptops?",
-        "answer": "Check our Promotions page for the latest discounts on laptops."
+        "question": "Are there any current discounts?",
+        "answer": "Check our Promotions page for the latest discounts."
       },
       {
         "question": "I’m having trouble checking out, can you help?",

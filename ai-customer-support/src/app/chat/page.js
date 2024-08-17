@@ -16,10 +16,7 @@ export default function Chat () {
         </div>
     )
     const [loading, setLoading ] = useState(false)
-    const [assistant, setAssistant] = useState([{
-        "role": "user", 
-        "content": `You are the customer support chatbot for an e-commerce website. Here is some contextual information: ${JSON.stringify(context)}. Only reply to prompts related to your role. If and only if, it isnt related to your role, reply with respond with "Sorry, I can't help with your request" and restate your role. Reply to this message from a user: ${message}`
-    }])
+    const [assistant, setAssistant] = useState([])
 
     const router = useRouter()
 
@@ -30,10 +27,7 @@ export default function Chat () {
     ]
 
     useEffect(()=> {
-        assistant.length > 20 ? setAssistant([{
-            "role": "user", 
-            "content": `You are the customer support chatbot for an e-commerce website. Here is some contextual information: ${JSON.stringify(context)}. Only reply to prompts related to your role. If and only if, it isnt related to your role, reply with respond with "Sorry, I can't help with your request" and restate your role. Reply to this message from a user: ${message}`
-        }]) : null
+        assistant.length > 6 ? setAssistant([]) : null
     }, [assistant])
 
     useEffect(() => {
@@ -49,7 +43,7 @@ export default function Chat () {
         setMessage(suggestion)
     }
 
-    const getResponse = async () => {
+    const getResponse = async (message) => {
         const apiToken = process.env.NEXT_PUBLIC_LLAMA_API_KEY
         setLoading(true)
 
@@ -62,7 +56,12 @@ export default function Chat () {
                 },
                 body: JSON.stringify({
                   "model": "meta-llama/llama-3.1-8b-instruct:free",
-                  "messages": assistant,
+                  "messages": [
+                    {
+                        "role": "user", 
+                        "content": `You are the customer support chatbot for an e-commerce website. Here is some contextual information: ${JSON.stringify(context)}. Only reply to prompts related to your role. If and only if, it isnt related to your role, reply with respond with "Sorry, I can't help with your request" and restate your role. Reply to this message from a user: ${message}`
+                    }, ...assistant
+                  ],
                 })
             })
             const data = await response.json()
@@ -72,6 +71,7 @@ export default function Chat () {
                 "content": output
             }])
             setLoading(false)
+            console.log(data)
             return output
         } catch(error) { 
             console.log(error.message)
@@ -82,7 +82,7 @@ export default function Chat () {
 
     const sendMessage = async (e) => {
         e.preventDefault()
-        const response = await getResponse()
+        const response = await getResponse(message.trim())
         setMessageJSX(
             <>
                 {messageJSX}
